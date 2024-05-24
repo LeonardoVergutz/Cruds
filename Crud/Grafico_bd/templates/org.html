@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+   <script type="text/javascript">
+     google.charts.load('current', {packages:["orgchart"]});
+     google.charts.setOnLoadCallback(drawChart);
+
+
+     function drawChart() {
+       var data = new google.visualization.DataTable();
+       data.addColumn('string', 'Nome');
+       data.addColumn('string', 'Versao');
+       data.addColumn('string', 'ToolTip');
+
+
+
+
+       data.addRows([
+         [{'v':'T', 'f':'<b>Tipos de Software</b>'},
+          '', 'Hierarquia de Softwares']
+
+
+         {% for dado in dados %}
+            , [{v:'tipo_{{ dado.idt_tipo }}', f:'{{ dado.nme_tipo }}'}, 'T', 'Tipo de Software: {{ dado.nme_tipo }}']
+
+
+            {% for soft in dado.softwares %}
+                ,['{{ soft.nme_software }}', 'tipo_{{ dado.idt_tipo }}', '{{ soft.nme_software }} - {{ soft.ver_software }}']
+            {% endfor %}
+
+
+        {% endfor %}
+
+
+       ]);
+
+
+       var chart = new google.visualization.OrgChart(document.getElementById('divOrg'));
+
+
+       chart.draw(data, {'allowHtml':true});
+     }
+  </script>
+
+
+  <title>Organograma tipo e software</title>
+</head>
+<body>
+  <h1 style="color: brown">Organograma de Tipo e Software</h1>
+  <hr>
+  <br>
+  <div id="divOrg">
+
+
+  </div>
+  <br>
+  <hr>
+  <br>
+</body>
+</html>

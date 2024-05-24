@@ -1,0 +1,28 @@
+
+{% extends 'layout.html' %}
+{% block conteudo %}
+<form action="/senha" method="post">
+<table>
+   <tr>
+       <td>Digite sua senha atual</td>
+       <td><input type="password" name="senha_atual" id="senha_atual"></td>
+   </tr>
+   <tr>
+       <td>Digite sua nova senha</td>
+       <td><input type="password" name="senha" id="senha"></td>
+   </tr>
+   <tr>
+       <td>Confirme sua nova senha</td>
+       <td><input type="password" name="confirma" id="confirma"></td>
+   </tr>
+   <tr>
+       <td colspan="2"><button type="submit">Alterar a Senha</button></td>
+   </tr>
+</table>
+</form>
+{% endblock %}
+
+
+{% block msg %}
+   {{ msg }}
+{% endblock %}

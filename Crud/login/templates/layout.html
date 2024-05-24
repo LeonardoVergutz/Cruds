@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <link rel="stylesheet" href="static/style.css">
+   <title>Sistema de Login</title>
+</head>
+<body>
+<div class="grid-container">
+   <div class="cab">
+       <table class="titulo">
+           <tr>
+               <td>Sistema de Login - Versão: 0.0</td>
+               <td style="padding-left: 80px;">Usuário ativo: <b>{{ session['usuario']['nme_usr'] }}</b></td>
+               <td style="padding-left: 80px;">Perfil:
+                   {% if session['usuario']['pfl_usr'] == "A" %}
+                       <b>Administrador</b>
+                   {% endif %}
+                   {% if session['usuario']['pfl_usr'] == "G" %}
+                       <b>Gerente</b>
+                   {% endif %}
+                   {% if session['usuario']['pfl_usr'] == "C" %}
+                       <b>Usuário Comum</b>
+                   {% endif %}
+               </td>
+               <td style="padding-left: 80px;">
+                   <button class="btn_sair" onclick="window.location = '/sair'">Sair do Sistema</button>
+               </td>
+           </tr>
+       </table>
+   </div>
+   <div class="menu">
+      <ul class="menu-vertical">
+       {% if session['usuario']['pfl_usr'] == "A" %}
+           <li><a href="/form_inc">Incluir novo usuário</a></li>
+           <li><a href="/modificar">Alterar/Excluir usuário</a></li>
+       {% endif %}
+       {% if session['usuario']['pfl_usr'] == "G" %}
+           <li><a href="/resetar">Resetar senha do usuário</a></li>
+       {% endif %}
+       <li><a href="/senha">Alterar sua senha</a></li>
+      </ul>
+   </div>
+   <div class="conteudo">{% block conteudo %} {% endblock %}</div>
+   <div class="rodape">
+       <p class="msg">
+           {% block msg %} {% endblock %}
+       </p>
+   </div>
+</div>
+</body>
+</html>
