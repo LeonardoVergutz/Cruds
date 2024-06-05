@@ -136,3 +136,25 @@ button{
    cursor: pointer;
    font-weight: bold;
 }
+
+
+/* Estilos para inputs */
+select, input {
+   width: 100%; /* Ocupar toda a largura da célula */
+   padding: 8px; /* Espaçamento interno nos inputs */
+   border: 1px solid #ccc; /* Borda fina para os inputs */
+}
+
+
+
+
+/* Estilos de foco para inputs */
+select, input:focus {
+   outline: none; /* Remover a borda de foco padrão */
+   border-color: #337ab7; /* Cor da borda ao focar */
+   border-width: 3px;
+}
+
+
+
+
