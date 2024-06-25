@@ -2,7 +2,7 @@ import mysql.connector
 
 
 class SQL:
-    def __init__(self, servidor='localhost', usr='root', pwd='', esquema='test'):
+    def __init__(self, servidor='localhost', usr='root', pwd='12345', esquema='test'):
         self.cnx = mysql.connector.connect(host=servidor,
                                            user=usr,
                                            password=pwd,
@@ -73,6 +73,7 @@ class SQL:
     def get_object(self, comando, params=[]):
         cs = self.cnx.cursor()
         cs.execute(comando, params)
+        print(cs)
         dados = cs.fetchone()
         if dados is None:
             dic = None

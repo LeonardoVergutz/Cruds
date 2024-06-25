@@ -156,6 +156,8 @@ def alterar():
         idt_usr = request.args.get("id")
         usr = act.get_usuario(idt_usr)
         return render_template('alterar.html', msg="", usr=usr)
+
+
 @app.route('/excluir', methods=['GET', 'POST'])
 def excluir():
     # Proteção para que só entre se o usuário estiver logado
@@ -179,6 +181,63 @@ def excluir():
         idt_usr = request.args.get("id")
         usr = act.get_usuario(idt_usr)
         return render_template('excluir.html', msg="", usr=usr)
+
+
+@app.route('/plotar')
+def plotar():
+    # Proteção para que só entre se o usuário estiver logado
+    try:
+        usr = session['usuario']
+    except:
+        return render_template('index.html', msg="Está tentando burlar o sistema! Não pode!!!")
+
+    if session['usuario']['pfl_usr'] != 'A':
+        return render_template('index.html', msg="Está tentando burlar o sistema! Você não é Administrador!!!")
+
+    pontos = act.get_pontos()
+    return render_template('plotar.html', pontos=pontos)
+
+
+@app.route('/dialogos')
+def dialogos():
+    # Proteção para que só entre se o usuário estiver logado
+    try:
+        usr = session['usuario']
+    except:
+        return render_template('index.html', msg="Está tentando burlar o sistema! Não pode!!!")
+
+    if session['usuario']['pfl_usr'] != 'A':
+        return render_template('index.html', msg="Está tentando burlar o sistema! Você não é Administrador!!!")
+
+    pontos = act.get_pontos()
+    return render_template('dialogos.html', pontos=pontos)
+
+
+@app.route('/formas')
+def formas():
+    # Proteção para que só entre se o usuário estiver logado
+    try:
+        usr = session['usuario']
+    except:
+        return render_template('index.html', msg="Está tentando burlar o sistema! Não pode!!!")
+
+    if session['usuario']['pfl_usr'] != 'A':
+        return render_template('index.html', msg="Está tentando burlar o sistema! Você não é Administrador!!!")
+
+    pontos = act.get_pontos()
+    return render_template('formas.html', pontos=pontos)
+
+
+@app.route('/marcadores')
+def marcadores():
+    try:
+        usr = session['usuario']
+    except:
+        return render_template('index.html', msg="Está tentando burlar o sistema! Não pode!!!")
+    if session['usuario']['pfl_usr'] != 'A':
+        return render_template('index.html', msg="Está tentando burlar o sistema! Você não é Administrador!!!")
+    pontos = act.get_pontos()
+    return render_template('marcadores.html', pontos=pontos)
 
 
 if __name__ == '__main__':

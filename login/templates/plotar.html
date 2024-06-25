@@ -1,0 +1,59 @@
+{% extends 'layout.html' %}
+{% block conteudo %}
+<table>
+   <tr>
+       <td style="width:25%">
+           <ul>
+               {% for ponto in pontos %}
+               <li>{{ ponto.idt_ponto}} - {{ ponto.nme_ponto }}</li>
+               {% endfor %}
+           </ul>
+       </td>
+       <td style="width:75%">
+           <div id="mapa" style="width: 800px; height:450px; padding: 5px; border: dotted #007bff 2px;"></div>
+       </td>
+   </tr>
+</table>
+{% endblock %}
+
+
+
+
+{% block msg %}
+Mapa com os pontos da tabela tb_ponto.
+{% endblock %}
+
+
+{% block script %}
+
+
+<script>
+
+
+   document.addEventListener("DOMContentLoaded", function () {
+
+
+       // Criando o mapa na div com id="mapa"
+       var mp = L.map('mapa').setView([-15.8081, -47.9317], 11);
+
+
+       // Adicionando a camada do openstreetmap (o desenho do mapa)
+       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+           maxZoom: 19,
+           attribution: '© OpenStreetMap'
+       }).addTo(mp);
+
+
+       // Plotando pontos no mapa
+       {% for ponto in pontos %}
+               var mk_{{ ponto.idt_ponto }} = L.marker([ {{ ponto.lat_ponto }}, {{ ponto.lng_ponto }} ]).addTo(mp);
+       {% endfor %}
+
+
+   });
+
+
+</script>
+
+
+{% endblock %}
