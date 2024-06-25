@@ -34,7 +34,6 @@ class Action:
         else:
             return "Senha atual está errada!"
 
-
     def resetar_senha(self, nme_usr):
         # Gerar 8 caracteres aleatorios
         caracteres = string.ascii_letters + string.digits
@@ -52,52 +51,45 @@ class Action:
             return "Erro ao tentar mudar a senha"
 
     def incluir(self, nme_usr, eml_usr, pwd_usr, pfl_usr):
-       cmd = "INSERT INTO tb_usr (nme_usr, eml_usr, pwd_usr, pfl_usr) VALUES (%s, %s, SHA(%s), %s);"
-       ret = self.mysql.insert(cmd, [nme_usr,eml_usr, pwd_usr, pfl_usr])
-       # Inseriu usuário com sucesso
-       if ret > 0:
-           return (ret, pwd_usr)
-       else:
-           return "Erro ao tentar inserir usuário"
-
-
-
+        cmd = "INSERT INTO tb_usr (nme_usr, eml_usr, pwd_usr, pfl_usr) VALUES (%s, %s, SHA(%s), %s);"
+        ret = self.mysql.insert(cmd, [nme_usr, eml_usr, pwd_usr, pfl_usr])
+        # Inseriu usuário com sucesso
+        if ret > 0:
+            return (ret, pwd_usr)
+        else:
+            return "Erro ao tentar inserir usuário"
 
     def listar(self, nme_usr, pfl_usr):
-       cmd = '''SELECT * FROM tb_usr
+        cmd = '''SELECT * FROM tb_usr
                 WHERE nme_usr LIKE CONCAT('%', %s, '%') AND (pfl_usr = %s OR %s = 'T')
                 ORDER BY nme_usr ASC;'''
 
-
-       lista = self.mysql.get_list(cmd, [nme_usr, pfl_usr, pfl_usr])
-       return lista
-
+        lista = self.mysql.get_list(cmd, [nme_usr, pfl_usr, pfl_usr])
+        return lista
 
     def get_usuario(self, idt_usr):
-       cmd = 'SELECT * FROM tb_usr where idt_usr = %s;'
+        cmd = 'SELECT * FROM tb_usr where idt_usr = %s;'
 
-
-       obj = self.mysql.get_object(cmd, [idt_usr])
-       return obj
-
+        obj = self.mysql.get_object(cmd, [idt_usr])
+        return obj
 
     def alterar(self, idt_usr, nme_usr, eml_usr, pwd_usr, pfl_usr):
-       cmd = "UPDATE tb_usr SET nme_usr=%s, eml_usr=%s, pwd_usr=SHA(%s), pfl_usr=%s WHERE idt_usr = %s;"
-       ret = self.mysql.upd_del(cmd, [nme_usr,eml_usr, pwd_usr, pfl_usr, idt_usr])
-       # Alterou usuário com sucesso
-       if ret > 0:
-           return "Usuário alterado com sucesso"
-       else:
-           return "Nada a alterar ou erro ao tentar alterar o usuário"
+        cmd = "UPDATE tb_usr SET nme_usr=%s, eml_usr=%s, pwd_usr=SHA(%s), pfl_usr=%s WHERE idt_usr = %s;"
+        ret = self.mysql.upd_del(cmd, [nme_usr, eml_usr, pwd_usr, pfl_usr, idt_usr])
+        # Alterou usuário com sucesso
+        if ret > 0:
+            return "Usuário alterado com sucesso"
+        else:
+            return "Nada a alterar ou erro ao tentar alterar o usuário"
 
     def excluir(self, idt_usr):
-       cmd = "DELETE FROM tb_usr WHERE idt_usr = %s;"
-       ret = self.mysql.upd_del(cmd, [idt_usr])
-       # Excluiu usuário com sucesso
-       if ret > 0:
-           return "Usuário excluido com sucesso"
-       else:
-           return "Erro ao tentar excluir o usuário"
+        cmd = "DELETE FROM tb_usr WHERE idt_usr = %s;"
+        ret = self.mysql.upd_del(cmd, [idt_usr])
+        # Excluiu usuário com sucesso
+        if ret > 0:
+            return "Usuário excluido com sucesso"
+        else:
+            return "Erro ao tentar excluir o usuário"
 
     def get_pontos(self):
         cmd = 'SELECT * FROM tb_ponto;'

@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alguns exemplos usando JQueryUI</title>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<script>
+$( function() {
+    $( "#menu" ).menu();
+});
+</script>
+<style>
+.ui-menu { width: 250px; }
+a {
+    text-decoration: none;
+}
+</style>
+</head>
+
+<body>
+<ul id="menu">
+    <li class="ui-state-disabled"><div>Exemplos de uso JQueryUI</div></li>
+    <li><div><a href="/accordion">Accordion</a></div></li>
+    <li><div><a href="/tabs">Tabs</a></div></li>
+    <li><div><a href="/dialogs">Dialogs</a></div></li>
+</ul>
+</body>
+</html>
