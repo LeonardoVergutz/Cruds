@@ -1,0 +1,160 @@
+
+.cab {
+   grid-area: cab;
+   font-size: 24px;
+   color: darkblue;
+   font-weight: bold;
+   text-align: center;
+}
+
+
+.menu {
+   grid-area: menu;
+}
+
+
+.conteudo {
+   grid-area: conteudo;
+}
+
+
+.rodape {
+   grid-area: rodape;
+   font-size: 18px;
+   color: blue;
+   text-align: center;
+}
+
+
+.grid-container {
+   display: grid;
+   grid-template-areas:
+           'cab cab cab cab'
+           'menu conteudo conteudo conteudo'
+           'rodape rodape rodape rodape';
+   background-color: lightblue;
+   padding: 10px;
+}
+
+
+
+
+.grid-container > div {
+   background-color: rgba(255, 255, 255, 0.8);
+   border: 1px solid rgba(0, 0, 0, 0.2);
+   padding: 20px;
+}
+
+
+.btn_sair{
+   padding: 15px 15px;
+   background-color: #ff7b7b;
+   color: white;
+   border: none;
+   border-radius: 30px;
+   cursor: pointer;
+   font-weight: bold;
+}
+
+
+.msg{
+   color: red;
+   font-weight: bold;
+}
+
+
+
+
+.menu-vertical {
+   list-style: none; /* Remover marcadores padrão */
+   margin: 0; /* Remover margem superior padrão */
+   padding: 0; /* Remover preenchimento padrão */
+}
+
+
+.menu-vertical li {
+   margin-bottom: 10px; /* Espaçamento entre itens */
+}
+
+
+.menu-vertical a {
+   display: block; /* Ocupar toda a largura da li */
+   padding: 10px 20px; /* Espaçamento interno */
+   text-decoration: none; /* Remover sublinhado padrão */
+   color: #777; /* Cor do texto */
+   font-size: 16px;
+}
+
+
+.menu-vertical a:hover {
+   background-color: #ddd; /* Cor de fundo ao passar o mouse */
+}
+
+
+/* Estilo geral da tabela */
+table {
+   border-collapse: collapse; /* Remover bordas entre as células */
+   width: 100%; /* Ocupar a largura total do container */
+   margin: 20px auto; /* Adicionar margem superior e centralizar */
+}
+
+
+th, td {
+   padding: 10px; /* Espaçamento interno nas células */
+   text-align: left; /* Alinhar texto à esquerda */
+}
+
+
+/* Estilos específicos para cada linha */
+tr:nth-child(odd) {
+   background-color: #f2f2f2; /* Cor de fundo alternada para linhas ímpares */
+}
+
+
+/* Estilos para inputs */
+input[type="password"] {
+   width: 100%; /* Ocupar toda a largura da célula */
+   padding: 8px; /* Espaçamento interno nos inputs */
+   border: 1px solid #ccc; /* Borda fina para os inputs */
+}
+
+
+/* Estilos de foco para inputs */
+input[type="password"]:focus {
+   outline: none; /* Remover a borda de foco padrão */
+   border-color: #337ab7; /* Cor da borda ao focar */
+   border-width: 3px;
+}
+
+
+button{
+   padding: 15px 15px;
+   background-color: #7b7bff;
+   color: white;
+   border: none;
+   border-radius: 20px;
+   cursor: pointer;
+   font-weight: bold;
+}
+
+
+/* Estilos para inputs */
+select, input {
+   width: 100%; /* Ocupar toda a largura da célula */
+   padding: 8px; /* Espaçamento interno nos inputs */
+   border: 1px solid #ccc; /* Borda fina para os inputs */
+}
+
+
+
+
+/* Estilos de foco para inputs */
+select, input:focus {
+   outline: none; /* Remover a borda de foco padrão */
+   border-color: #337ab7; /* Cor da borda ao focar */
+   border-width: 3px;
+}
+
+
+
+

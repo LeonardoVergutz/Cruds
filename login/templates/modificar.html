@@ -1,0 +1,83 @@
+{% extends 'layout.html' %}
+{% block conteudo %}
+<form action="/modificar" method="post">
+    <table>
+        <tr>
+            <td>Digite parte do nome do usuário:</td>
+            <td><input type="text" name="nme_usr" id="nme_usr" maxlength="20"></td>
+        </tr>
+        <tr>
+            <td>Escolha um perfil:</td>
+            <td>
+                <select name="pfl_usr" id="pfl_usr" size="1">
+                    <option value="T">Todos os Perfis</option>
+                    <option value="C">Usuário Comum</option>
+                    <option value="G">Gerente</option>
+                    <option value="A">Administrador</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <button type="submit">Buscar Usuários</button>
+            </td>
+        </tr>
+    </table>
+</form>
+{% if lista | length: %}
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Usuário</th>
+        <th>E-mail</th>
+        <th>Perfil</th>
+        <th>Opções</th>
+    </tr>
+    {% for usr in lista %}
+    <tr>
+        <td>{{ usr['idt_usr'] }}</td>
+        <td>{{ usr['nme_usr'] }}</td>
+        <td>{{ usr['eml_usr'] }}</td>
+        <td>
+            {% if usr['pfl_usr'] == "C": %}
+            Usuário Comum
+            {% endif %}
+            {% if usr['pfl_usr'] == 'G': %}
+            Gerente
+            {% endif %}
+            {% if usr['pfl_usr'] == 'A': %}
+            Administrador
+            {% endif %}
+        </td>
+        <td>
+            <button onclick="alterar('{{ usr['idt_usr'] }}')">Alterar</button>
+            <button onclick="excluir('{{ usr['idt_usr'] }}')">Excluir</button>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endif %}
+
+
+{% endblock %}
+
+
+{% block msg %}
+{{ msg }}
+{% endblock %}
+
+
+{% block script %}
+<script>
+
+
+    function alterar(id) {
+        window.location = "/alterar?id=" + id;
+    }
+
+
+    function excluir(id) {
+        window.location = "/excluir?id=" + id;
+    }
+</script>
+{% endblock %}
